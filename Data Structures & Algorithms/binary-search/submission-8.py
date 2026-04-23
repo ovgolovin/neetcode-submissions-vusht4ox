@@ -1,6 +1,69 @@
+import bisect
+
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        return self.search_lower_bound(nums, target)
+        index = self.bisect_left(nums, target)
+        return index if index < len(nums) and nums[index] == target else -1
+
+
+    def bisect_left(self, nums, target):
+        l = 0
+        r = len(nums)
+
+        while l < r:
+            mid = l + (r - l) // 2
+            if nums[mid] < target:
+                l = mid + 1
+            else:
+                r = mid
+        
+        return l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     def search_iterative(self, nums: List[int], target: int) -> int:
