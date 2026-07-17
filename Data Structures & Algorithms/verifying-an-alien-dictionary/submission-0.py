@@ -1,0 +1,22 @@
+from itertools import pairwise
+
+
+class Solution:
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        letter_pos = {char: i for i, char in enumerate(order)}
+        for word1, word2 in pairwise(words):
+            for char1, char2 in zip(word1, word2):
+                if char1 == char2:
+                    continue
+                if letter_pos[char1] > letter_pos[char2]:
+                    print(word1, word2)
+                    print(char1, char2)
+                    print(letter_pos[char1], letter_pos[char2])
+                    return False
+                break
+            else:
+                if len(word1) > len(word2):
+                    print(word1, word2)
+                    return False
+        return True
+        
