@@ -6,7 +6,7 @@ class Solution:
         window = Counter()
         need = len(counts)
         have = 0
-        best_length = 0
+        best_length = None
 
         left = 0
         for right in range(len(s)):
@@ -15,7 +15,7 @@ class Solution:
                 have += 1
 
             while need == have:
-                if best_length == 0 or right - left + 1 < best_length:
+                if best_length is None or right - left + 1 < best_length:
                     best_length = right - left + 1
                     result = (left, right)
                 
@@ -24,7 +24,7 @@ class Solution:
                 window[s[left]] -= 1
                 left += 1
 
-        if best_length == 0:
+        if best_length is None:
             return ""
         else:
             return s[result[0]:result[1] + 1]
